@@ -12,65 +12,42 @@ class AXI4XBar extends Module with CoreParameters {
   })
 
   //read
-  val arQ = Module(new Queue(new AxiArBundle, 4)) 
-  val  rQ = Module(new Queue(new AxiRBundle, 4)) 
+  val rinFlashRange = inFlasRange(io.axi_m.ar.bits.addr)
+  val rinRamRange = inRamRange(io.axi_m.ar.bits.addr)
 
-  arQ.io.enq <> io.axi_m.ar 
+  io.axi_m.ar.ready := true.B
 
-  val rinFlashRange = inFlasRange(arQ.io.deq.bits.addr)
-  val rinRamRange = inRamRange(arQ.io.deq.bits.addr)
-  val rinVacantRange = !rinFlashRange && !rinRamRange && arQ.io.deq.valid
+  io.axi_s(0).ar.valid := io.axi_m.ar.valid && rinFlashRange
+  io.axi_s(0).ar.bits  := io.axi_m.ar.bits
+  io.axi_s(0).r.ready  := true.B
 
-  arQ.io.deq.ready := ((0 until 2).map(io.axi_s(_).r.fire).reduce(_ || _) || rinVacantRange) && rQ.io.enq.ready
-   
-  io.axi_s(0).ar.valid := arQ.io.deq.valid && rinFlashRange
-  io.axi_s(1).ar.valid := arQ.io.deq.valid && rinRamRange
-  for(i <- 0 until 2) {
-    io.axi_s(i).ar.bits := arQ.io.deq.bits
-  }
+  io.axi_s(1).ar.valid := io.axi_m.ar.valid && rinRamRange
+  io.axi_s(1).ar.bits  := io.axi_m.ar.bits
+  io.axi_s(1).r.ready  := true.B
 
-  rQ.io.enq.valid := (0 until 2).map(io.axi_s(_).r.valid).reduce(_ || _) || rinVacantRange
-  rQ.io.enq.bits := Mux1H((0 until 2).map(i => io.axi_s(i).r.valid -> io.axi_s(i).r.bits))
-
-  for(i <- 0 until 2) {
-    io.axi_s(i).r.ready := rQ.io.enq.ready
-  }
-
-  io.axi_m.r <> rQ.io.deq
-  
+  io.axi_m.r.valid := RegNext(io.axi_m.ar.valid)
+  io.axi_m.r.bits := Mux(io.axi_s(0).r.fire, io.axi_s(0).r.bits, io.axi_s(1).r.bits)
 
   //write
-  val awQ = Module(new Queue(new AxiAwBundle, 4))
-  val  wQ = Module(new Queue(new AxiWBundle, 4))
-  val  bQ = Module(new Queue(new AxiBBundle, 4))
+  val winFlashRange = inFlasRange(io.axi_m.aw.bits.addr)
+  val winRamRange = inFlasRange(io.axi_m.aw.bits.addr)
 
-  awQ.io.enq <> io.axi_m.aw
-   wQ.io.enq <> io.axi_m.w
-
-  val winFlashRange = inFlasRange(awQ.io.deq.bits.addr)
-  val winRamRange = inFlasRange(awQ.io.deq.bits.addr)
-  val winVacantRange = !winFlashRange && !winRamRange && awQ.io.deq.valid
-
-  awQ.io.deq.ready :=  ((0 until 2).map(io.axi_s(_).aw.fire).reduce(_ || _) || winVacantRange) && bQ.io.enq.ready
-   wQ.io.deq.ready :=  ((0 until 2).map(io.axi_s(_).w.fire).reduce(_ || _) || winVacantRange) && bQ.io.enq.ready
+  io.axi_m.aw.ready := io.axi_m.w.valid
+  io.axi_m.w.ready := io.axi_m.aw.valid
   
-  io.axi_s(0).aw.valid := awQ.io.deq.valid && wQ.io.deq.valid && winFlashRange
-  io.axi_s(1).aw.valid := awQ.io.deq.valid && wQ.io.deq.valid && winRamRange
-  io.axi_s(0).w.valid  := awQ.io.deq.valid && wQ.io.deq.valid && winFlashRange
-  io.axi_s(1).w.valid  := awQ.io.deq.valid && wQ.io.deq.valid && winRamRange
+  io.axi_s(0).aw.valid := io.axi_m.aw.valid &&  io.axi_m.w.valid && winFlashRange
+  io.axi_s(0).aw.bits  := io.axi_m.aw.bits
+  io.axi_s(0).w.valid  := io.axi_m.aw.valid &&  io.axi_m.w.valid && winFlashRange
+  io.axi_s(0).w.bits   := io.axi_m.w.bits
+  io.axi_s(0).b.ready  := true.B
 
-  for(i <- 0 until 2) {
-    io.axi_s(i).aw.bits := awQ.io.deq.bits
-    io.axi_s(i).w.bits := wQ.io.deq.bits
-  }
+  io.axi_s(1).aw.valid := io.axi_m.aw.valid &&  io.axi_m.w.valid && winRamRange
+  io.axi_s(1).aw.bits  := io.axi_m.aw.bits
+  io.axi_s(1).w.valid  := io.axi_m.aw.valid &&  io.axi_m.w.valid && winRamRange
+  io.axi_s(1).w.bits   := io.axi_m.w.bits
+  io.axi_s(1).b.ready  := true.B
 
-  bQ.io.enq.valid := (0 until 2).map(io.axi_s(_).b.valid).reduce(_ || _) || winVacantRange
-  bQ.io.enq.bits := Mux1H((0 until 2).map(i => io.axi_s(i).b.valid -> io.axi_s(i).b.bits))
-
-  for(i <- 0 until 2) {
-    io.axi_s(i).b.ready := bQ.io.enq.ready
-  }
-
-  io.axi_m.b <> bQ.io.deq
+  io.axi_m.b.valid := RegNext(io.axi_m.aw.valid &&  io.axi_m.w.valid)
+  io.axi_m.b.bits := Mux(io.axi_s(0).b.fire, io.axi_s(0).b.bits, io.axi_s(1).b.bits)
 }
 

@@ -348,4 +348,7 @@ sim/simv.daidir/
 sim/simv.fsdb
 sim/ucli.key
 sim/vc_hdrs.h
+sim/novas.conf
+sim/novas.rc
+sim/verdiLog/
 ready-to-run/

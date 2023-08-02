@@ -24,11 +24,11 @@ class AXI4Flash extends Module with CoreParameters {
   io.axi.ar.ready := true.B
   flash.io.clk := clock
   flash.io.ren := io.axi.ar.fire
-  flash.io.addr := io.axi.ar.bits.addr
+  flash.io.addr := io.axi.ar.bits.addr - FlashBase.U
 
-  io.axi.r.valid := io.axi.ar.valid
-  io.axi.r.bits.id := io.axi.ar.bits.id
-  io.axi.r.bits.data := flash.io.data
+  io.axi.r.valid := RegNext(io.axi.ar.valid)
+  io.axi.r.bits.id := RegNext(io.axi.ar.bits.id)
+  io.axi.r.bits.data := flash.io.data << (RegNext(io.axi.ar.bits.addr(4, 0)) << 3.U)
   io.axi.r.bits.resp := 0.U
   io.axi.r.bits.last := true.B
 

@@ -16,5 +16,7 @@ class SimMMIO extends Module with CoreParameters {
         io.axi <> axi4xbar.io.axi_m
   flash.io.axi <> axi4xbar.io.axi_s(0)
     ram.io.axi <> axi4xbar.io.axi_s(1)
+  
+  dontTouch(io.axi)
 }
 

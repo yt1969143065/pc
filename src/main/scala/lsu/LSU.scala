@@ -714,5 +714,6 @@ class LSU extends Module with CoreParameters{
 
   dontTouch(d_ar)
   dontTouch(d_aw)
+  dontTouch(d_b)
 }
 

@@ -50,7 +50,8 @@ trait CoreParameters {
   }
   def inRamRange(addr:UInt) : Bool = {
     addr >= RAMBase.U &&
-    addr <= RAMBase.U + RAMMask.U
+    addr <= (RAMBase.U + RAMMask.U) &&
+    !inFlasRange(addr)
   }
 
 }
