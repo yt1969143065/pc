@@ -53,7 +53,7 @@ class Iid extends Module with CoreParameters {
       }.elsewhen(releaseD2(i).valid){
         printf(p"$iid ")
       }.otherwise{
-        printf("--- ")
+        printf("... ")
       }   
     }   
     printf("\n")
@@ -191,7 +191,6 @@ class Iid extends Module with CoreParameters {
   if(EnableDifftest){
     val difftest = Module(new DifftestArchIntRegState)
     difftest.io.clock := clock
-    difftest.io.coreid := 0.U
     difftest.io.gpr    := io.envRegRdData.get
   }
 }

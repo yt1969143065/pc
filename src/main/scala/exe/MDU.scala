@@ -248,12 +248,12 @@ class MDU extends Module with CoreParameters{
     Mux(c2Out.valid, c2Out.dstData, 0.U) |
     Mux(cxOut.valid, cxOut.dstData, 0.U)
 
-  if(EnableDifftest){
-    val difftest = Module(new DifftestIntWriteback)
-    difftest.io.clock := clock
-    difftest.io.valid := iwb.valid
-    difftest.io.dest  := iwb.pReg
-    difftest.io.data  := iwb.dstData
-  }
+  //if(EnableDifftest){
+  //  val difftest = Module(new DifftestIntWriteback)
+  //  difftest.io.clock := clock
+  //  difftest.io.valid := iwb.valid
+  //  difftest.io.dest  := iwb.pReg
+  //  difftest.io.data  := iwb.dstData
+  //}
 }
 

@@ -16,8 +16,6 @@ typedef struct {
   uint8_t  valid    = 0;
   uint8_t  code     = 0;
   uint64_t pc       = 0;
-  uint64_t cycleCnt = 0;
-  uint64_t instrCnt = 0;
 } trap_event_t;
 
 typedef struct {
@@ -75,8 +73,8 @@ public:
   inline trap_event_t *get_trap_event(){return &(dut.trap);}
   inline instr_commit_t *get_instr_commit(uint8_t index){return &(dut.commit[index]);}
   inline arch_reg_state_t *get_arch_reg_state(){return &(dut.regs);}
-  inline difftest_core_state_t *get_dut() {return &dut;}
-  inline difftest_core_state_t *get_ref() {return &ref;}
+  //inline difftest_core_state_t *get_dut() {return &dut;}
+  //inline difftest_core_state_t *get_ref() {return &ref;}
   void update_refproxy(size_t);
   virtual int step();
 

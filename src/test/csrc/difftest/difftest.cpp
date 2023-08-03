@@ -73,12 +73,14 @@ int Difftest::step(){
 }
 
 int Difftest::check_timeout(){
-  if(!has_commit && ticks > last_commit + firstCommit_limit) {
+  if(!has_commit && (ticks > last_commit + firstCommit_limit)) {
     eprintf("No instruction commits for %lu cycles. Please check the first instruction.\n", firstCommit_limit);
+    printf("@@ %d/%d IPC:%1.2f @@\n\n", instcnt, ticks, 1.0*instcnt/ticks); 
     return 1;
   }
-  if(has_commit && ticks > last_commit + stuck_limit){
+  if(has_commit && (ticks > last_commit + stuck_limit)){
     eprintf("No instruction commits for %lu cycles, maybe get stuck.\n", stuck_limit);
+    printf("@@ %d/%d IPC:%1.2f @@\n\n", instcnt, ticks, 1.0*instcnt/ticks); 
     return 1;
   }
   return 0;
@@ -96,7 +98,7 @@ void Difftest::clear_step(){
   }
 }
 
-//FIXME: can't ne any FIRST_INST_ADDRESS and any firt commit_num
+//FIXME: can't be any FIRST_INST_ADDRESS and any firt commit_num
 void Difftest::do_first_instr_commit(){
   if(!has_commit && dut.commit[0].valid){
     if(dut.commit[0].pc != FIRST_INST_ADDRESS){return;}

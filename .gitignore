@@ -351,4 +351,5 @@ sim/vc_hdrs.h
 sim/novas.conf
 sim/novas.rc
 sim/verdiLog/
+sim/stack*
 ready-to-run/

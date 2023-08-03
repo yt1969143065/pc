@@ -69,12 +69,12 @@ class ALU extends Module with CoreParameters{
   iwb.bid     := iexe.bid
   iwb.dstData := result
 
-  if(EnableDifftest){
-    val difftest = Module(new DifftestIntWriteback)
-    difftest.io.clock := clock
-    difftest.io.valid := iwb.valid
-    difftest.io.dest  := iwb.pReg
-    difftest.io.data  := iwb.dstData
-  }
+  //if(EnableDifftest){
+  //  val difftest = Module(new DifftestIntWriteback)
+  //  difftest.io.clock := clock
+  //  difftest.io.valid := iwb.valid
+  //  difftest.io.dest  := iwb.pReg
+  //  difftest.io.data  := iwb.dstData
+  //}
 }
 

@@ -169,19 +169,19 @@ class CSR extends Module with CoreParameters{
   io.csrinfo.mtvec := mtvec.value
   io.csrinfo.mepc  := mepc.mepc
 
-  if(EnableDifftest){
-    val difftest = Module(new DifftestArchEvent)
-    difftest.io.clock := clock
-    difftest.io.exceptionPC := mepc.mepc
-  }
-  if(EnableDifftest){
-    val difftest = Module(new DifftestCSRState)
-    difftest.io.clock := clock
-    difftest.io.mstatus := mstatus.value
-    difftest.io.mepc    := mepc.value
-    difftest.io.mtvec   := mtvec.value
-    difftest.io.mcause  := mcause.value
-    difftest.io.priviledgeMode := 3.U
-  }
+  //if(EnableDifftest){
+  //  val difftest = Module(new DifftestArchEvent)
+  //  difftest.io.clock := clock
+  //  difftest.io.exceptionPC := mepc.mepc
+  //}
+  //if(EnableDifftest){
+  //  val difftest = Module(new DifftestCSRState)
+  //  difftest.io.clock := clock
+  //  difftest.io.mstatus := mstatus.value
+  //  difftest.io.mepc    := mepc.value
+  //  difftest.io.mtvec   := mtvec.value
+  //  difftest.io.mcause  := mcause.value
+  //  difftest.io.priviledgeMode := 3.U
+  //}
 }
 

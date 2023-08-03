@@ -1,0 +1,94 @@
+Magic 271485
+Revision Verdi_O-2018.09-SP2
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 31 3828 939 326 264
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/home/lyy/chiselProject/Core/sim/simv.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 131.648405 138.328344
+cursor 1.000000
+marker 0.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 0
+; marker line index
+markerPos 41
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "clk" -e FALSE
+activeDirFile "" "/home/lyy/chiselProject/Core/sim/simv.fsdb"
+addSignal -h 21 /tb/sim/core/reset
+addSignal -h 21 -holdScope clock
+addGroup "axiif" -e FALSE
+addSignal -h 21 /tb/sim/core/io_axi_ar_valid
+addSignal -h 21 -holdScope io_axi_ar_bits_id[7:0]
+addSignal -h 21 -holdScope io_axi_ar_bits_addr[38:0]
+addSignal -h 21 -holdScope io_axi_r_valid
+addSignal -h 21 -holdScope io_axi_r_bits_id[7:0]
+addSignal -h 21 -holdScope io_axi_r_bits_data[255:0]
+addGroup "fetch" -e FALSE
+addSignal -h 21 /tb/sim/core/u_ifu/pc[38:0]
+addSignal -h 21 /tb/sim/core/u_ifu/rspQ/io_enq_valid
+addSignal -h 21 -holdScope io_enq_bits_addr[38:0]
+addSignal -h 21 -holdScope io_enq_bits_data[255:0]
+addGroup "decode" -e FALSE
+addSignal -h 21 /tb/sim/core/u_ifu/io_stall
+addSignal -h 21 -holdScope io_idecode_0_valid
+addSignal -h 21 -holdScope io_idecode_0_pc[38:0]
+addSignal -h 21 -holdScope io_idecode_0_inst[31:0]
+addSignal -h 21 -holdScope io_idecode_1_valid
+addSignal -h 21 -holdScope io_idecode_1_pc[38:0]
+addSignal -h 21 -holdScope io_idecode_1_inst[31:0]
+addSignal -h 21 -holdScope io_idecode_2_valid
+addSignal -h 21 -holdScope io_idecode_2_pc[38:0]
+addSignal -h 21 -holdScope io_idecode_2_inst[31:0]
+addSignal -h 21 -holdScope io_idecode_3_valid
+addSignal -h 21 -holdScope io_idecode_3_pc[38:0]
+addSignal -h 21 -holdScope io_idecode_3_inst[31:0]
+addSignal -h 21 -holdScope io_idecode_4_valid
+addSignal -h 21 -holdScope io_idecode_4_pc[38:0]
+addSignal -h 21 -holdScope io_idecode_4_inst[31:0]
+addSignal -h 21 -holdScope io_idecode_5_valid
+addSignal -h 21 -holdScope io_idecode_5_pc[38:0]
+addSignal -h 21 -holdScope io_idecode_5_inst[31:0]
+addSignal -h 21 -holdScope io_idecode_6_valid
+addSignal -h 21 -holdScope io_idecode_6_pc[38:0]
+addSignal -h 21 -holdScope io_idecode_6_inst[31:0]
+addSignal -h 21 -holdScope io_idecode_7_valid
+addSignal -h 21 -holdScope io_idecode_7_pc[38:0]
+addSignal -h 21 -holdScope io_idecode_7_inst[31:0]
+addGroup "G6"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+
