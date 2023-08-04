@@ -45,8 +45,9 @@ int Difftest::step(){
 
   //pc check: dut this_pc us current pc, ref this_pc is next pc: dut this_pc us current pc, ref this_pc is next pc
   if(dut.csr.this_pc != ref.csr.this_pc && dut.commit[0].valid){
-    printf("@%d, pc mismatch: ref=0x%16lx, dut=0x%16lx\n", ticks, ref.csr.this_pc, dut.csr.this_pc);
+    printf("@%d, pc mismatch: ref=0x%010lx, dut=0x%010lx\n", ticks, ref.csr.this_pc, dut.csr.this_pc);
     printf("@@ %d/%d IPC:%1.2f @@\n\n", instcnt, ticks, 1.0*instcnt/ticks); 
+    return 1;
   } 
 
   //reg data check
@@ -59,7 +60,7 @@ int Difftest::step(){
   instcnt = instcnt + num_commit;
 
   if(!progress) {return 0;}
-  for(int i=0; i < num_commit; i++){
+  for(int i = 0; i < num_commit; i ++){
     if(dut.commit[i].rfwen && dut_regs_ptr[dut.commit[i].wdest] != ref_regs_ptr[dut.commit[i].wdest]){
       printf("@%d, x%d different at pc=0x%010lx, right=0x%016lx, wrong=0x%016x, [%d]\n", 
         ticks, dut.commit[i].wdest, dut.csr.this_pc, ref_regs_ptr[dut.commit[i].wdest], dut_regs_ptr[dut.commit[i].wdest], i);
@@ -67,6 +68,7 @@ int Difftest::step(){
       return 1;
     }
   }
+  return 0;
 }
 
 int Difftest::check_timeout(){
