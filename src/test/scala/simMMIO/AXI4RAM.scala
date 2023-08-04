@@ -34,18 +34,18 @@ class AXI4RAM extends Module with CoreParameters {
     ram.io.clk := clock
     ram.io.en  := io.axi.ar.fire || io.axi.aw.fire
     ram.io.wen := io.axi.aw.fire
-    ram.io.rIdx := rIdx
-    ram.io.wIdx := wIdx
+    ram.io.rIdx := rIdx + i.U
+    ram.io.wIdx := wIdx + i.U
     ram.io.wdata := io.axi.w.bits.data((i + 1) * 64 - 1, i * 64)
     ram.io.wmask := MaskExpand(io.axi.w.bits.strb((i + 1) * 8 - 1, i * 8))
-    rdata(i) := ram.io.rdata
+    rdata(i) := RegNext(ram.io.rdata)
   }
 
   io.axi.ar.ready := true.B
 
-  io.axi.r.valid := io.axi.ar.valid
-  io.axi.r.bits.id := io.axi.ar.bits.id
-  io.axi.r.bits.data := Cat(rdata)
+  io.axi.r.valid := RegNext(io.axi.ar.valid)
+  io.axi.r.bits.id := RegNext(io.axi.ar.bits.id)
+  io.axi.r.bits.data := Cat(rdata.reverse)
   io.axi.r.bits.resp := 0.U
   io.axi.r.bits.last := true.B
 

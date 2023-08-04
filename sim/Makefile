@@ -24,14 +24,14 @@ compile:$(CFILES) $(VFILES)
 	vcs $(VCS_FLAGS) $(CFILES) $(VFILES) 
 
 CASE ?= /home/lyy/nexus-am/apps/coremark/build/coremark-riscv64-xs.bin
-run:compile
+run:compile  $(VFILE_LIST)
 	./simv +dump +workload=$(CASE) +diff=../ready-to-run/riscv64-spike-so +max-cycles=50000 2>&1 | tee run.log
 
-verdi:$(VFILE_LIST)
+verdi:
 	verdi -sv -f flist.f -ssf ./simv.fsdb -sswr signal.rc &
 
 clean:
-	rm -rf simv* *.log csrc *.h *.f *info* *.key novas* verdi*
+	rm -rf simv* *.log csrc *.h  *info* *.key novas* verdi* *.f
 
 .PHONY: compile run verdi clean
 
