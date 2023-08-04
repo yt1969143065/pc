@@ -21,4 +21,6 @@ public:
   SpikeProxy(int coreid, size_t ram_size);
 private:
 };
+
+//extern const char *difftest_ref_so;
 #endif

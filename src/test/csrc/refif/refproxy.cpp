@@ -47,9 +47,9 @@ SpikeProxy::SpikeProxy(int coreid, size_t ram_size = 0) {
   load_flash_bin = (void (*)(void *flash_bin, size_t size))dlsym(handle, "difftest_load_flash");
   check_and_assert(load_flash_bin);
 
-  if(ram_size){
-    printf("Spike ram_size api to be added later, ignore ram_size set\n");
-  }
+  //if(ram_size){
+  //  printf("Spike ram_size api to be added later, ignore ram_size set\n");
+  //}
  
   spike_init(0);
 }

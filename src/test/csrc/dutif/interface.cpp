@@ -1,5 +1,10 @@
 #include "difftest.h"
 
+#define DPIC_ARG_BIT  uint8_t
+#define DPIC_ARG_BYTE uint8_t
+#define DPIC_ARG_INT  uint32_t
+#define DPIC_ARG_LONG uint64_t
+
 extern "C" void v_difftest_TrapEvent(
   uint8_t  valid,
   uint8_t  code,
@@ -10,6 +15,20 @@ extern "C" void v_difftest_TrapEvent(
   packet->valid    = valid;
   packet->code     = code;
   packet->pc       = pc;
+}
+
+extern "C" void v_difftest_ArchEvent(
+  uint32_t intrNo,
+  uint32_t cause,
+  uint64_t exceptionPc,
+  uint32_t exceptionInst
+){
+  if (difftest == NULL) return;
+  auto packet = difftest->get_arch_event();
+  packet->interrupt = intrNo;
+  packet->exception = cause;
+  packet->exceptionPC = exceptionPc;
+  packet->exceptionInst = exceptionInst;
 }
 
 extern "C" void v_difftest_InstrCommit(
@@ -105,3 +124,44 @@ extern "C" void v_difftest_ArchIntRegState(
   packet->gpr[31] = gpr_31;
 }
 
+extern "C" void v_difftest_CSRState(
+  DPIC_ARG_BYTE priviledgeMode,        
+  DPIC_ARG_LONG mstatus,               
+  DPIC_ARG_LONG sstatus,               
+  DPIC_ARG_LONG mepc,                  
+  DPIC_ARG_LONG sepc,                  
+  DPIC_ARG_LONG mtval,                 
+  DPIC_ARG_LONG stval,                 
+  DPIC_ARG_LONG mtvec,                 
+  DPIC_ARG_LONG stvec,                 
+  DPIC_ARG_LONG mcause,                
+  DPIC_ARG_LONG scause,                
+  DPIC_ARG_LONG satp,                  
+  DPIC_ARG_LONG mip,                   
+  DPIC_ARG_LONG mie,                   
+  DPIC_ARG_LONG mscratch,              
+  DPIC_ARG_LONG sscratch,              
+  DPIC_ARG_LONG mideleg,               
+  DPIC_ARG_LONG medeleg                 
+){
+  if (difftest == NULL) return;
+  auto packet = difftest->get_csr_state();
+  packet->priviledgeMode = priviledgeMode;
+  packet->mstatus = mstatus;
+  packet->sstatus = sstatus;
+  packet->mepc = mepc;
+  packet->sepc = sepc;
+  packet->mtval = mtval;
+  packet->stval = stval;
+  packet->mtvec = mtvec;
+  packet->stvec = stvec;
+  packet->mcause = mcause;
+  packet->scause = scause;
+  packet->satp = satp;
+  packet->mip = mip;
+  packet->mie = mie;
+  packet->mscratch = mscratch;
+  packet->sscratch = sscratch;
+  packet->mideleg = mideleg;
+  packet->medeleg = medeleg;
+}

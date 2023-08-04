@@ -53,7 +53,7 @@ int Difftest::step(){
   num_commit = 0;
   for(int i=0; i<DIFFTEST_COMMIT_WIDTH && dut.commit[i].valid; i++){
     do_instr_commit();
-    dut.commit[i].valid = 0;
+    //dut.commit[i].valid = 0;
     num_commit++; 
   }
   instcnt = instcnt + num_commit;
@@ -61,13 +61,14 @@ int Difftest::step(){
   if(!progress) {return 0;}
   for(int i=0; i<num_commit; i++){
     if(dut.commit[i].rfwen && dut_regs_ptr[dut.commit[i].wdest] != ref_regs_ptr[dut.commit[i].wdest]){
-      printf("@%d, x%d different at pc=0x%16lx, right=0x%16lx, wrong=0x%16x, [%d]", 
+      printf("@%d, x%d different at pc=0x%010lx, right=0x%016lx, wrong=0x%016x, [%d]\n", 
         ticks, dut.commit[i].wdest, dut.csr.this_pc, 
         ref_regs_ptr[dut.commit[i].wdest],
         dut_regs_ptr[dut.commit[i].wdest],
         i
       );
       printf("@@ %d/%d IPC:%1.2f @@\n\n", instcnt, ticks, 1.0*instcnt/ticks); 
+      return 1;
     }
   }
 }
@@ -107,7 +108,7 @@ void Difftest::do_first_instr_commit(){
     proxy->load_flash_bin(get_flash_path(), get_flash_size());
     proxy->memcpy(PMEM_BASE, get_img_start(), get_img_size(), DIFFTEST_TO_REF);
     proxy->regcpy(dut_regs_ptr, DIFFTEST_TO_REF);
-    proxy->regcpy(dut_regs_ptr, REF_TO_DUT);
+    proxy->regcpy(ref_regs_ptr, REF_TO_DUT);
   }
 }
 
@@ -115,5 +116,5 @@ void Difftest::do_instr_commit(){
   progress = true;
   update_last_commit();
   proxy->exec(1);
-  proxy->regcpy(dut_regs_ptr, REF_TO_DUT);
+  proxy->regcpy(ref_regs_ptr, REF_TO_DUT);
 }

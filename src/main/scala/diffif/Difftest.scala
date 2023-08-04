@@ -46,6 +46,33 @@ class DiffArchIntRegStateIO extends DifftestBundle {
   val gpr = Input(Vec(32, UInt(64.W)))
 }
 
+class DiffCSRStateIO extends DifftestBundle {
+  val priviledgeMode = Input(UInt(2.W))
+  val mstatus = Input(UInt(64.W))
+  val sstatus = Input(UInt(64.W))
+  val mepc = Input(UInt(64.W))
+  val sepc = Input(UInt(64.W))
+  val mtval = Input(UInt(64.W))
+  val stval = Input(UInt(64.W))
+  val mtvec = Input(UInt(64.W))
+  val stvec = Input(UInt(64.W))
+  val mcause = Input(UInt(64.W))
+  val scause = Input(UInt(64.W))
+  val satp = Input(UInt(64.W))
+  val mip = Input(UInt(64.W))
+  val mie = Input(UInt(64.W))
+  val mscratch = Input(UInt(64.W))
+  val sscratch = Input(UInt(64.W))
+  val mideleg = Input(UInt(64.W))
+  val medeleg = Input(UInt(64.W))
+}
+
+class DiffArchEventIO extends DifftestBundle {
+  val intrNO = Input(UInt(32.W))
+  val cause = Input(UInt(32.W))
+  val exceptionPC = Input(UInt(64.W))
+  val exceptionInst = Input(UInt(32.W))
+}
 
 abstract class DifftestModule[T <: DifftestBundle] extends ExtModule with HasExtModuleInline
 {
@@ -123,4 +150,6 @@ class DifftestBaseModule[T <: DifftestBundle](gen: T) extends DifftestModule[T] 
 class DifftestInstrCommit extends DifftestBaseModule(new DiffInstrCommitIO)
 class DifftestTrapEvent extends DifftestBaseModule(new DiffTrapEventIO)
 class DifftestArchIntRegState extends DifftestBaseModule(new DiffArchIntRegStateIO)
+class DifftestArchEvent extends DifftestBaseModule(new DiffArchEventIO)
+class DifftestCSRState extends DifftestBaseModule(new DiffCSRStateIO)
 

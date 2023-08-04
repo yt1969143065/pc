@@ -4,7 +4,6 @@
 #include "common.h"
 #include "refproxy.h"
 
-#define FIRST_INST_ADDRESS 0x10000000
 #define PMEM_BASE 0x80000000UL
 
 
@@ -17,6 +16,13 @@ typedef struct {
   uint8_t  code     = 0;
   uint64_t pc       = 0;
 } trap_event_t;
+
+typedef struct {
+  uint32_t interrupt = 0;
+  uint32_t exception = 0;
+  uint64_t exceptionPC = 0;
+  uint32_t exceptionInst = 0;
+} arch_event_t;
 
 typedef struct {
   uint8_t  valid    = 0;
@@ -35,17 +41,45 @@ typedef struct {
 
 typedef struct __attribute__((packed)){
   uint64_t this_pc;
+  uint64_t mstatus;
+  uint64_t mcause;
+  uint64_t mepc;
+  uint64_t sstatus;
+  uint64_t scause;
+  uint64_t sepc;
+  uint64_t satp;
+  uint64_t mip;
+  uint64_t mie;
+  uint64_t mscratch;
+  uint64_t sscratch;
+  uint64_t mideleg;
+  uint64_t medeleg;
+  uint64_t mtval;
+  uint64_t stval;
+  uint64_t mtvec;
+  uint64_t stvec;
+  uint64_t priviledgeMode;
 } arch_csr_state_t;
+
+typedef struct __attribute__((packed)) {
+  uint64_t debugMode;
+  uint64_t dcsr;
+  uint64_t dpc;
+  uint64_t dscratch0;
+  uint64_t dscratch1;
+} debug_mode_t;
 
 typedef struct {
   trap_event_t     trap;
+  arch_event_t     event;
   instr_commit_t   commit[DIFFTEST_COMMIT_WIDTH];
   arch_reg_state_t regs;
   arch_csr_state_t csr;
+  debug_mode_t     dmregs;
 } difftest_core_state_t;
 
-const int DIFFTEST_NR_REG = (sizeof(arch_reg_state_t) + sizeof(arch_csr_state_t)) / sizeof(uint64_t);
 /*
+const int DIFFTEST_NR_REG = (sizeof(arch_reg_state_t) + sizeof(arch_csr_state_t)) / sizeof(uint64_t);
 static const char *reg_name[DIFFTEST_NR_REG+1] = {
   "$0",  "ra",  "sp",   "gp",   "tp",  "t0",  "t1",   "t2",
   "s0",  "s1",  "a0",   "a1",   "a2",  "a3",  "a4",   "a5",
@@ -71,6 +105,8 @@ public:
   inline bool get_trap_valid(){return dut.trap.valid;}
   inline int get_trap_code(){return dut.trap.code;}
   inline trap_event_t *get_trap_event(){return &(dut.trap);}
+  inline arch_event_t *get_arch_event() { return &(dut.event);}
+  inline arch_csr_state_t *get_csr_state() { return &(dut.csr);}
   inline instr_commit_t *get_instr_commit(uint8_t index){return &(dut.commit[index]);}
   inline arch_reg_state_t *get_arch_reg_state(){return &(dut.regs);}
   //inline difftest_core_state_t *get_dut() {return &dut;}
