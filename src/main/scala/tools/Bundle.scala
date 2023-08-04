@@ -40,8 +40,8 @@ trait CoreParameters {
   val FlashBase = 0x10000000L
   val FlashMask =  0xfffffffL
   val FlashIdxWidth = log2Up(FlashMask) 
-  val RAMBase = 0L
-  val RAMMask = 0xffffffffL 
+  val RAMBase = 0x80000000L
+  val RAMMask = 0xfffffffL 
   val RAMIdxWidth = log2Up(RAMMask)
 
   def inFlasRange(addr:UInt) : Bool = {

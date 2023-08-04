@@ -26,7 +26,7 @@ class AXI4RAM extends Module with CoreParameters {
     val axi = Flipped(new AXI4)
   })
   
-  val rIdx = (io.axi.ar.bits.addr - RAMBase.U)(RAMIdxWidth-1, 5)
+  val rIdx = (io.axi.ar.bits.addr - RAMBase.U)(RAMIdxWidth-1, 5) 
   val wIdx = (io.axi.aw.bits.addr - RAMBase.U)(RAMIdxWidth-1, 5)
   val rdata = Wire(Vec(4, UInt(64.W)))
   for(i <- 0 until 4){
@@ -34,8 +34,8 @@ class AXI4RAM extends Module with CoreParameters {
     ram.io.clk := clock
     ram.io.en  := io.axi.ar.fire || io.axi.aw.fire
     ram.io.wen := io.axi.aw.fire
-    ram.io.rIdx := rIdx + i.U
-    ram.io.wIdx := wIdx + i.U
+    ram.io.rIdx := (rIdx << 2.U) + i.U
+    ram.io.wIdx := (wIdx << 2.U) + i.U
     ram.io.wdata := io.axi.w.bits.data((i + 1) * 64 - 1, i * 64)
     ram.io.wmask := MaskExpand(io.axi.w.bits.strb((i + 1) * 8 - 1, i * 8))
     rdata(i) := RegNext(ram.io.rdata)

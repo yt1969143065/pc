@@ -2,7 +2,7 @@ Magic 271485
 Revision Verdi_O-2018.09-SP2
 
 ; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
-viewPort 0 31 3828 956 326 264
+viewPort 0 31 3828 1490 326 264
 
 ; File list:
 ; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
@@ -16,7 +16,7 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 131.648405 164.630000
+zoom 34.414704 192.910000
 cursor 1.000000
 marker 0.000000
 
@@ -25,7 +25,7 @@ marker 0.000000
 ; visible top row signal index
 top 0
 ; marker line index
-markerPos 322
+markerPos 329
 
 ; event list
 ; addEvent event_name event_expression
@@ -47,336 +47,343 @@ curSTATUS ByChange
 
 addGroup "clk" -e FALSE
 activeDirFile "" "/home/lyy/chiselProject/Core/sim/simv.fsdb"
-addSignal -h 21 /tb/sim/core/reset
-addSignal -h 21 -holdScope clock
+addSignal -h 15 /tb/sim/core/reset
+addSignal -h 15 -holdScope clock
 addGroup "axiif" -e FALSE
-addSignal -h 21 /tb/sim/core/io_axi_ar_valid
-addSignal -h 21 -holdScope io_axi_ar_bits_id[7:0]
-addSignal -h 21 -holdScope io_axi_ar_bits_addr[38:0]
-addSignal -h 21 -holdScope io_axi_r_valid
-addSignal -h 21 -holdScope io_axi_r_bits_id[7:0]
-addSignal -h 21 -holdScope io_axi_r_bits_data[255:0]
+addSignal -h 15 /tb/sim/core/io_axi_ar_valid
+addSignal -h 15 -holdScope io_axi_ar_bits_id[7:0]
+addSignal -h 15 -holdScope io_axi_ar_bits_addr[38:0]
+addSignal -h 15 -holdScope io_axi_r_valid
+addSignal -h 15 -holdScope io_axi_r_bits_id[7:0]
+addSignal -h 15 -holdScope io_axi_r_bits_data[255:0]
 addGroup "fetch" -e FALSE
-addSignal -h 21 /tb/sim/core/u_ifu/pc[38:0]
-addSignal -h 21 /tb/sim/core/u_ifu/rspQ/io_enq_valid
-addSignal -h 21 -holdScope io_enq_bits_addr[38:0]
-addSignal -h 21 -holdScope io_enq_bits_data[255:0]
+addSignal -h 15 /tb/sim/core/u_ifu/pc[38:0]
+addSignal -h 15 /tb/sim/core/u_ifu/rspQ/io_enq_valid
+addSignal -h 15 -holdScope io_enq_bits_addr[38:0]
+addSignal -h 15 -holdScope io_enq_bits_data[255:0]
 addGroup "decode" -e FALSE
-addSignal -h 21 /tb/sim/core/u_ifu/io_stall
-addSignal -h 21 -holdScope io_idecode_0_valid
-addSignal -h 21 -holdScope io_idecode_0_pc[38:0]
-addSignal -h 21 -holdScope io_idecode_0_inst[31:0]
-addSignal -h 21 -holdScope io_idecode_1_valid
-addSignal -h 21 -holdScope io_idecode_1_pc[38:0]
-addSignal -h 21 -holdScope io_idecode_1_inst[31:0]
-addSignal -h 21 -holdScope io_idecode_2_valid
-addSignal -h 21 -holdScope io_idecode_2_pc[38:0]
-addSignal -h 21 -holdScope io_idecode_2_inst[31:0]
-addSignal -h 21 -holdScope io_idecode_3_valid
-addSignal -h 21 -holdScope io_idecode_3_pc[38:0]
-addSignal -h 21 -holdScope io_idecode_3_inst[31:0]
-addSignal -h 21 -holdScope io_idecode_4_valid
-addSignal -h 21 -holdScope io_idecode_4_pc[38:0]
-addSignal -h 21 -holdScope io_idecode_4_inst[31:0]
-addSignal -h 21 -holdScope io_idecode_5_valid
-addSignal -h 21 -holdScope io_idecode_5_pc[38:0]
-addSignal -h 21 -holdScope io_idecode_5_inst[31:0]
-addSignal -h 21 -holdScope io_idecode_6_valid
-addSignal -h 21 -holdScope io_idecode_6_pc[38:0]
-addSignal -h 21 -holdScope io_idecode_6_inst[31:0]
-addSignal -h 21 -holdScope io_idecode_7_valid
-addSignal -h 21 -holdScope io_idecode_7_pc[38:0]
-addSignal -h 21 -holdScope io_idecode_7_inst[31:0]
+addSignal -h 15 /tb/sim/core/u_ifu/io_stall
+addSignal -h 15 -holdScope io_idecode_0_valid
+addSignal -h 15 -holdScope io_idecode_0_pc[38:0]
+addSignal -h 15 -holdScope io_idecode_0_inst[31:0]
+addSignal -h 15 -holdScope io_idecode_1_valid
+addSignal -h 15 -holdScope io_idecode_1_pc[38:0]
+addSignal -h 15 -holdScope io_idecode_1_inst[31:0]
+addSignal -h 15 -holdScope io_idecode_2_valid
+addSignal -h 15 -holdScope io_idecode_2_pc[38:0]
+addSignal -h 15 -holdScope io_idecode_2_inst[31:0]
+addSignal -h 15 -holdScope io_idecode_3_valid
+addSignal -h 15 -holdScope io_idecode_3_pc[38:0]
+addSignal -h 15 -holdScope io_idecode_3_inst[31:0]
+addSignal -h 15 -holdScope io_idecode_4_valid
+addSignal -h 15 -holdScope io_idecode_4_pc[38:0]
+addSignal -h 15 -holdScope io_idecode_4_inst[31:0]
+addSignal -h 15 -holdScope io_idecode_5_valid
+addSignal -h 15 -holdScope io_idecode_5_pc[38:0]
+addSignal -h 15 -holdScope io_idecode_5_inst[31:0]
+addSignal -h 15 -holdScope io_idecode_6_valid
+addSignal -h 15 -holdScope io_idecode_6_pc[38:0]
+addSignal -h 15 -holdScope io_idecode_6_inst[31:0]
+addSignal -h 15 -holdScope io_idecode_7_valid
+addSignal -h 15 -holdScope io_idecode_7_pc[38:0]
+addSignal -h 15 -holdScope io_idecode_7_inst[31:0]
 addGroup "allocate" -e FALSE
-addSignal -h 21 /tb/sim/core/u_scheduler/mIid/io_allocate_0_valid
-addSignal -h 21 -holdScope io_allocate_0_pc[38:0]
-addSignal -h 21 -holdScope io_allocate_0_inst[31:0]
-addSignal -h 21 -holdScope io_allocate_0_iid[6:0]
-addSignal -h 21 -holdScope io_allocate_0_pReg[6:0]
-addSignal -h 21 -holdScope io_allocate_1_valid
-addSignal -h 21 -holdScope io_allocate_1_pc[38:0]
-addSignal -h 21 -holdScope io_allocate_1_inst[31:0]
-addSignal -h 21 -holdScope io_allocate_1_iid[6:0]
-addSignal -h 21 -holdScope io_allocate_1_pReg[6:0]
-addSignal -h 21 -holdScope io_allocate_2_valid
-addSignal -h 21 -holdScope io_allocate_2_pc[38:0]
-addSignal -h 21 -holdScope io_allocate_2_inst[31:0]
-addSignal -h 21 -holdScope io_allocate_2_iid[6:0]
-addSignal -h 21 -holdScope io_allocate_2_pReg[6:0]
-addSignal -h 21 -holdScope io_allocate_3_valid
-addSignal -h 21 -holdScope io_allocate_3_pc[38:0]
-addSignal -h 21 -holdScope io_allocate_3_inst[31:0]
-addSignal -h 21 -holdScope io_allocate_3_iid[6:0]
-addSignal -h 21 -holdScope io_allocate_3_pReg[6:0]
-addSignal -h 21 -holdScope io_allocate_4_valid
-addSignal -h 21 -holdScope io_allocate_4_pc[38:0]
-addSignal -h 21 -holdScope io_allocate_4_inst[31:0]
-addSignal -h 21 -holdScope io_allocate_4_iid[6:0]
-addSignal -h 21 -holdScope io_allocate_4_pReg[6:0]
-addSignal -h 21 -holdScope io_allocate_5_valid
-addSignal -h 21 -holdScope io_allocate_5_pc[38:0]
-addSignal -h 21 -holdScope io_allocate_5_inst[31:0]
-addSignal -h 21 -holdScope io_allocate_5_iid[6:0]
-addSignal -h 21 -holdScope io_allocate_5_pReg[6:0]
-addSignal -h 21 -holdScope io_allocate_6_valid
-addSignal -h 21 -holdScope io_allocate_6_pc[38:0]
-addSignal -h 21 -holdScope io_allocate_6_inst[31:0]
-addSignal -h 21 -holdScope io_allocate_6_iid[6:0]
-addSignal -h 21 -holdScope io_allocate_6_pReg[6:0]
-addSignal -h 21 -holdScope io_allocate_7_valid
-addSignal -h 21 -holdScope io_allocate_7_pc[38:0]
-addSignal -h 21 -holdScope io_allocate_7_inst[31:0]
-addSignal -h 21 -holdScope io_allocate_7_iid[6:0]
-addSignal -h 21 -holdScope io_allocate_7_pReg[6:0]
+addSignal -h 15 /tb/sim/core/u_scheduler/mIid/io_allocate_0_valid
+addSignal -h 15 -holdScope io_allocate_0_pc[38:0]
+addSignal -h 15 -holdScope io_allocate_0_inst[31:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_0_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_0_pReg[6:0]
+addSignal -h 15 -holdScope io_allocate_1_valid
+addSignal -h 15 -holdScope io_allocate_1_pc[38:0]
+addSignal -h 15 -holdScope io_allocate_1_inst[31:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_1_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_1_pReg[6:0]
+addSignal -h 15 -holdScope io_allocate_2_valid
+addSignal -h 15 -holdScope io_allocate_2_pc[38:0]
+addSignal -h 15 -holdScope io_allocate_2_inst[31:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_2_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_2_pReg[6:0]
+addSignal -h 15 -holdScope io_allocate_3_valid
+addSignal -h 15 -holdScope io_allocate_3_pc[38:0]
+addSignal -h 15 -holdScope io_allocate_3_inst[31:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_3_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_3_pReg[6:0]
+addSignal -h 15 -holdScope io_allocate_4_valid
+addSignal -h 15 -holdScope io_allocate_4_pc[38:0]
+addSignal -h 15 -holdScope io_allocate_4_inst[31:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_4_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_4_pReg[6:0]
+addSignal -h 15 -holdScope io_allocate_5_valid
+addSignal -h 15 -holdScope io_allocate_5_pc[38:0]
+addSignal -h 15 -holdScope io_allocate_5_inst[31:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_5_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_5_pReg[6:0]
+addSignal -h 15 -holdScope io_allocate_6_valid
+addSignal -h 15 -holdScope io_allocate_6_pc[38:0]
+addSignal -h 15 -holdScope io_allocate_6_inst[31:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_6_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_6_pReg[6:0]
+addSignal -h 15 -holdScope io_allocate_7_valid
+addSignal -h 15 -holdScope io_allocate_7_pc[38:0]
+addSignal -h 15 -holdScope io_allocate_7_inst[31:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_7_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_allocate_7_pReg[6:0]
 addGroup "enpool" -e FALSE
-addSignal -h 21 /tb/sim/core/u_scheduler/io_ienpool_0_valid
-addSignal -h 21 -holdScope io_ienpool_0_iid[6:0]
-addSignal -h 21 -holdScope io_ienpool_0_pid[5:0]
-addSignal -h 21 -holdScope io_ienpool_0_bid[4:0]
-addSignal -h 21 -holdScope io_ienpool_0_lid[4:0]
-addSignal -h 21 -holdScope io_ienpool_0_sid[4:0]
-addSignal -h 21 -holdScope io_ienpool_0_toAl
-addSignal -h 21 -holdScope io_ienpool_0_toMd
-addSignal -h 21 -holdScope io_ienpool_1_valid
-addSignal -h 21 -holdScope io_ienpool_1_iid[6:0]
-addSignal -h 21 -holdScope io_ienpool_1_pid[5:0]
-addSignal -h 21 -holdScope io_ienpool_1_bid[4:0]
-addSignal -h 21 -holdScope io_ienpool_1_lid[4:0]
-addSignal -h 21 -holdScope io_ienpool_1_sid[4:0]
-addSignal -h 21 -holdScope io_ienpool_1_toAl
-addSignal -h 21 -holdScope io_ienpool_1_toMd
-addSignal -h 21 -holdScope io_ienpool_2_valid
-addSignal -h 21 -holdScope io_ienpool_2_iid[6:0]
-addSignal -h 21 -holdScope io_ienpool_2_pid[5:0]
-addSignal -h 21 -holdScope io_ienpool_2_bid[4:0]
-addSignal -h 21 -holdScope io_ienpool_2_lid[4:0]
-addSignal -h 21 -holdScope io_ienpool_2_sid[4:0]
-addSignal -h 21 -holdScope io_ienpool_2_toAl
-addSignal -h 21 -holdScope io_ienpool_2_toMd
-addSignal -h 21 -holdScope io_ienpool_3_valid
-addSignal -h 21 -holdScope io_ienpool_3_iid[6:0]
-addSignal -h 21 -holdScope io_ienpool_3_pid[5:0]
-addSignal -h 21 -holdScope io_ienpool_3_bid[4:0]
-addSignal -h 21 -holdScope io_ienpool_3_lid[4:0]
-addSignal -h 21 -holdScope io_ienpool_3_sid[4:0]
-addSignal -h 21 -holdScope io_ienpool_3_toAl
-addSignal -h 21 -holdScope io_ienpool_3_toMd
-addSignal -h 21 -holdScope io_ienpool_4_valid
-addSignal -h 21 -holdScope io_ienpool_4_iid[6:0]
-addSignal -h 21 -holdScope io_ienpool_4_pid[5:0]
-addSignal -h 21 -holdScope io_ienpool_4_bid[4:0]
-addSignal -h 21 -holdScope io_ienpool_4_lid[4:0]
-addSignal -h 21 -holdScope io_ienpool_4_sid[4:0]
-addSignal -h 21 -holdScope io_ienpool_4_toAl
-addSignal -h 21 -holdScope io_ienpool_4_toMd
-addSignal -h 21 -holdScope io_ienpool_5_valid
-addSignal -h 21 -holdScope io_ienpool_5_iid[6:0]
-addSignal -h 21 -holdScope io_ienpool_5_pid[5:0]
-addSignal -h 21 -holdScope io_ienpool_5_bid[4:0]
-addSignal -h 21 -holdScope io_ienpool_5_lid[4:0]
-addSignal -h 21 -holdScope io_ienpool_5_sid[4:0]
-addSignal -h 21 -holdScope io_ienpool_5_toAl
-addSignal -h 21 -holdScope io_ienpool_5_toAl
-addSignal -h 21 -holdScope io_ienpool_5_toMd
-addSignal -h 21 -holdScope io_ienpool_6_valid
-addSignal -h 21 -holdScope io_ienpool_6_iid[6:0]
-addSignal -h 21 -holdScope io_ienpool_6_pid[5:0]
-addSignal -h 21 -holdScope io_ienpool_6_bid[4:0]
-addSignal -h 21 -holdScope io_ienpool_6_lid[4:0]
-addSignal -h 21 -holdScope io_ienpool_6_sid[4:0]
-addSignal -h 21 -holdScope io_ienpool_6_toAl
-addSignal -h 21 -holdScope io_ienpool_6_toMd
-addSignal -h 21 -holdScope io_ienpool_7_valid
-addSignal -h 21 -holdScope io_ienpool_7_iid[6:0]
-addSignal -h 21 -holdScope io_ienpool_7_pid[5:0]
-addSignal -h 21 -holdScope io_ienpool_7_bid[4:0]
-addSignal -h 21 -holdScope io_ienpool_7_lid[4:0]
-addSignal -h 21 -holdScope io_ienpool_7_sid[4:0]
-addSignal -h 21 -holdScope io_ienpool_7_toAl
-addSignal -h 21 -holdScope io_ienpool_7_toMd
+addSignal -h 15 /tb/sim/core/u_scheduler/io_ienpool_0_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_0_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_0_pid[5:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_0_bid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_0_lid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_0_sid[4:0]
+addSignal -h 15 -holdScope io_ienpool_0_toAl
+addSignal -h 15 -holdScope io_ienpool_0_toMd
+addSignal -h 15 /BLANK
+addSignal -h 15 /tb/sim/core/u_scheduler/io_ienpool_1_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_1_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_1_pid[5:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_1_bid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_1_lid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_1_sid[4:0]
+addSignal -h 15 -holdScope io_ienpool_1_toAl
+addSignal -h 15 -holdScope io_ienpool_1_toMd
+addSignal -h 15 /BLANK
+addSignal -h 15 /tb/sim/core/u_scheduler/io_ienpool_2_valid
+addSignal -h 15 -holdScope io_ienpool_2_iid[6:0]
+addSignal -h 15 -holdScope io_ienpool_2_pid[5:0]
+addSignal -h 15 -holdScope io_ienpool_2_bid[4:0]
+addSignal -h 15 -holdScope io_ienpool_2_lid[4:0]
+addSignal -h 15 -holdScope io_ienpool_2_sid[4:0]
+addSignal -h 15 -holdScope io_ienpool_2_toAl
+addSignal -h 15 -holdScope io_ienpool_2_toMd
+addSignal -h 15 /BLANK
+addSignal -h 15 /tb/sim/core/u_scheduler/io_ienpool_3_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_3_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_3_pid[5:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_3_bid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_3_lid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_3_sid[4:0]
+addSignal -h 15 -holdScope io_ienpool_3_toAl
+addSignal -h 15 -holdScope io_ienpool_3_toMd
+addSignal -h 15 /BLANK
+addSignal -h 15 /tb/sim/core/u_scheduler/io_ienpool_4_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_4_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_4_pid[5:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_4_bid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_4_lid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_4_sid[4:0]
+addSignal -h 15 -holdScope io_ienpool_4_toAl
+addSignal -h 15 -holdScope io_ienpool_4_toMd
+addSignal -h 15 /BLANK
+addSignal -h 15 /tb/sim/core/u_scheduler/io_ienpool_5_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_5_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_5_pid[5:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_5_bid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_5_lid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_5_sid[4:0]
+addSignal -h 15 -holdScope io_ienpool_5_toAl
+addSignal -h 15 -holdScope io_ienpool_5_toAl
+addSignal -h 15 -holdScope io_ienpool_5_toMd
+addSignal -h 15 /BLANK
+addSignal -h 15 /tb/sim/core/u_scheduler/io_ienpool_6_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_6_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_6_pid[5:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_6_bid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_6_lid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_6_sid[4:0]
+addSignal -h 15 -holdScope io_ienpool_6_toAl
+addSignal -h 15 -holdScope io_ienpool_6_toMd
+addSignal -h 15 /BLANK
+addSignal -h 15 /tb/sim/core/u_scheduler/io_ienpool_7_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_7_iid[6:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_7_pid[5:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_7_bid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_7_lid[4:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_ienpool_7_sid[4:0]
+addSignal -h 15 -holdScope io_ienpool_7_toAl
+addSignal -h 15 -holdScope io_ienpool_7_toMd
 addGroup "select" -e FALSE
 addSubGroup "alu" -e FALSE
-addSignal -h 21 /tb/sim/core/u_aluPool/select_0_valid
-addSignal -h 21 -holdScope select_0_pid[5:0]
-addSignal -h 21 -holdScope select_1_valid
-addSignal -h 21 -holdScope select_1_pid[5:0]
-addSignal -h 21 -holdScope select_2_valid
-addSignal -h 21 -holdScope select_2_pid[5:0]
-addSignal -h 21 -holdScope select_3_valid
-addSignal -h 21 -holdScope select_3_pid[5:0]
+addSignal -h 15 /tb/sim/core/u_aluPool/select_0_valid
+addSignal -h 15 -holdScope select_0_pid[5:0]
+addSignal -h 15 -holdScope select_1_valid
+addSignal -h 15 -holdScope select_1_pid[5:0]
+addSignal -h 15 -holdScope select_2_valid
+addSignal -h 15 -holdScope select_2_pid[5:0]
+addSignal -h 15 -holdScope select_3_valid
+addSignal -h 15 -holdScope select_3_pid[5:0]
 endSubGroup "alu"
 addSubGroup "mdu" -e FALSE
-addSignal -h 21 /tb/sim/core/u_mduPool/select_0_valid
-addSignal -h 21 -holdScope select_0_pid[5:0]
-addSignal -h 21 -holdScope select_1_valid
-addSignal -h 21 -holdScope select_1_pid[5:0]
-addSignal -h 21 -holdScope select_2_valid
-addSignal -h 21 -holdScope select_2_pid[5:0]
-addSignal -h 21 -holdScope select_3_valid
-addSignal -h 21 -holdScope select_3_pid[5:0]
+addSignal -h 15 /tb/sim/core/u_mduPool/select_0_valid
+addSignal -h 15 -holdScope select_0_pid[5:0]
+addSignal -h 15 -holdScope select_1_valid
+addSignal -h 15 -holdScope select_1_pid[5:0]
+addSignal -h 15 -holdScope select_2_valid
+addSignal -h 15 -holdScope select_2_pid[5:0]
+addSignal -h 15 -holdScope select_3_valid
+addSignal -h 15 -holdScope select_3_pid[5:0]
 endSubGroup "mdu"
 addGroup "issue" -e FALSE
 addSubGroup "alu" -e FALSE
-addSignal -h 21 /tb/sim/core/u_aluPool/issueVld_0
-addSignal -h 21 -holdScope issuePid_0[5:0]
-addSignal -h 21 -holdScope issueVld_1
-addSignal -h 21 -holdScope issuePid_1[5:0]
-addSignal -h 21 -holdScope issueVld_2
-addSignal -h 21 -holdScope issuePid_2[5:0]
-addSignal -h 21 -holdScope issueVld_3
-addSignal -h 21 -holdScope issuePid_3[5:0]
+addSignal -h 15 /tb/sim/core/u_aluPool/issueVld_0
+addSignal -h 15 -holdScope issuePid_0[5:0]
+addSignal -h 15 -holdScope issueVld_1
+addSignal -h 15 -holdScope issuePid_1[5:0]
+addSignal -h 15 -holdScope issueVld_2
+addSignal -h 15 -holdScope issuePid_2[5:0]
+addSignal -h 15 -holdScope issueVld_3
+addSignal -h 15 -holdScope issuePid_3[5:0]
 endSubGroup "alu"
 addSubGroup "mdu" -e FALSE
-addSignal -h 21 /tb/sim/core/u_mduPool/issueVld_0
-addSignal -h 21 -holdScope issuePid_0[5:0]
-addSignal -h 21 -holdScope issueVld_1
-addSignal -h 21 -holdScope issuePid_1[5:0]
-addSignal -h 21 -holdScope issueVld_2
-addSignal -h 21 -holdScope issuePid_2[5:0]
-addSignal -h 21 -holdScope issueVld_3
-addSignal -h 21 -holdScope issuePid_3[5:0]
+addSignal -h 15 /tb/sim/core/u_mduPool/issueVld_0
+addSignal -h 15 -holdScope issuePid_0[5:0]
+addSignal -h 15 -holdScope issueVld_1
+addSignal -h 15 -holdScope issuePid_1[5:0]
+addSignal -h 15 -holdScope issueVld_2
+addSignal -h 15 -holdScope issuePid_2[5:0]
+addSignal -h 15 -holdScope issueVld_3
+addSignal -h 15 -holdScope issuePid_3[5:0]
 endSubGroup "mdu"
 addGroup "exe" -e FALSE
 addSubGroup "ldu" -e FALSE
-addSignal -h 21 /tb/sim/core/u_aluPool/io_ldReq_0_valid
-addSignal -h 21 -holdScope io_ldReq_0_lid[4:0]
-addSignal -h 21 -holdScope io_ldReq_0_pid[5:0]
-addSignal -h 21 -holdScope io_ldReq_0_op[4:0]
-addSignal -h 21 -holdScope io_ldReq_0_addr[63:0]
-addSignal -h 21 -holdScope io_ldReq_1_valid
-addSignal -h 21 -holdScope io_ldReq_1_lid[4:0]
-addSignal -h 21 -holdScope io_ldReq_1_pid[5:0]
-addSignal -h 21 -holdScope io_ldReq_1_op[4:0]
-addSignal -h 21 -holdScope io_ldReq_1_addr[63:0]
-addSignal -h 21 -holdScope io_ldReq_2_valid
-addSignal -h 21 -holdScope io_ldReq_2_lid[4:0]
-addSignal -h 21 -holdScope io_ldReq_2_pid[5:0]
-addSignal -h 21 -holdScope io_ldReq_2_op[4:0]
-addSignal -h 21 -holdScope io_ldReq_2_addr[63:0]
-addSignal -h 21 -holdScope io_ldReq_3_valid
-addSignal -h 21 -holdScope io_ldReq_3_lid[4:0]
-addSignal -h 21 -holdScope io_ldReq_3_pid[5:0]
-addSignal -h 21 -holdScope io_ldReq_3_op[4:0]
-addSignal -h 21 -holdScope io_ldReq_3_addr[63:0]
+addSignal -h 15 /tb/sim/core/u_aluPool/io_ldReq_0_valid
+addSignal -h 15 -holdScope io_ldReq_0_lid[4:0]
+addSignal -h 15 -holdScope io_ldReq_0_pid[5:0]
+addSignal -h 15 -holdScope io_ldReq_0_op[4:0]
+addSignal -h 15 -holdScope io_ldReq_0_addr[63:0]
+addSignal -h 15 -holdScope io_ldReq_1_valid
+addSignal -h 15 -holdScope io_ldReq_1_lid[4:0]
+addSignal -h 15 -holdScope io_ldReq_1_pid[5:0]
+addSignal -h 15 -holdScope io_ldReq_1_op[4:0]
+addSignal -h 15 -holdScope io_ldReq_1_addr[63:0]
+addSignal -h 15 -holdScope io_ldReq_2_valid
+addSignal -h 15 -holdScope io_ldReq_2_lid[4:0]
+addSignal -h 15 -holdScope io_ldReq_2_pid[5:0]
+addSignal -h 15 -holdScope io_ldReq_2_op[4:0]
+addSignal -h 15 -holdScope io_ldReq_2_addr[63:0]
+addSignal -h 15 -holdScope io_ldReq_3_valid
+addSignal -h 15 -holdScope io_ldReq_3_lid[4:0]
+addSignal -h 15 -holdScope io_ldReq_3_pid[5:0]
+addSignal -h 15 -holdScope io_ldReq_3_op[4:0]
+addSignal -h 15 -holdScope io_ldReq_3_addr[63:0]
 endSubGroup "ldu"
 addSubGroup "stu" -e FALSE
-addSignal -h 21 /tb/sim/core/u_lsu/io_stReq_0_valid
-addSignal -h 21 -holdScope io_stReq_0_sid[4:0]
-addSignal -h 21 -holdScope io_stReq_0_lid[4:0]
-addSignal -h 21 -holdScope io_stReq_0_iid[6:0]
-addSignal -h 21 -holdScope io_stReq_0_op[4:0]
-addSignal -h 21 -holdScope io_stReq_0_addr[63:0]
-addSignal -h 21 -holdScope io_stReq_0_data[63:0]
-addSignal -h 21 -holdScope io_stReq_1_valid
-addSignal -h 21 -holdScope io_stReq_1_sid[4:0]
-addSignal -h 21 -holdScope io_stReq_1_lid[4:0]
-addSignal -h 21 -holdScope io_stReq_1_iid[6:0]
-addSignal -h 21 -holdScope io_stReq_1_op[4:0]
-addSignal -h 21 -holdScope io_stReq_1_addr[63:0]
-addSignal -h 21 -holdScope io_stReq_1_data[63:0]
-addSignal -h 21 -holdScope io_stReq_2_valid
-addSignal -h 21 -holdScope io_stReq_2_sid[4:0]
-addSignal -h 21 -holdScope io_stReq_2_lid[4:0]
-addSignal -h 21 -holdScope io_stReq_2_iid[6:0]
-addSignal -h 21 -holdScope io_stReq_2_op[4:0]
-addSignal -h 21 -holdScope io_stReq_2_addr[63:0]
-addSignal -h 21 -holdScope io_stReq_2_data[63:0]
-addSignal -h 21 -holdScope io_stReq_3_valid
-addSignal -h 21 -holdScope io_stReq_3_sid[4:0]
-addSignal -h 21 -holdScope io_stReq_3_lid[4:0]
-addSignal -h 21 -holdScope io_stReq_3_iid[6:0]
-addSignal -h 21 -holdScope io_stReq_3_op[4:0]
-addSignal -h 21 -holdScope io_stReq_3_addr[63:0]
-addSignal -h 21 -holdScope io_stReq_3_data[63:0]
+addSignal -h 15 /tb/sim/core/u_lsu/io_stReq_0_valid
+addSignal -h 15 -holdScope io_stReq_0_sid[4:0]
+addSignal -h 15 -holdScope io_stReq_0_lid[4:0]
+addSignal -h 15 -holdScope io_stReq_0_iid[6:0]
+addSignal -h 15 -holdScope io_stReq_0_op[4:0]
+addSignal -h 15 -holdScope io_stReq_0_addr[63:0]
+addSignal -h 15 -holdScope io_stReq_0_data[63:0]
+addSignal -h 15 -holdScope io_stReq_1_valid
+addSignal -h 15 -holdScope io_stReq_1_sid[4:0]
+addSignal -h 15 -holdScope io_stReq_1_lid[4:0]
+addSignal -h 15 -holdScope io_stReq_1_iid[6:0]
+addSignal -h 15 -holdScope io_stReq_1_op[4:0]
+addSignal -h 15 -holdScope io_stReq_1_addr[63:0]
+addSignal -h 15 -holdScope io_stReq_1_data[63:0]
+addSignal -h 15 -holdScope io_stReq_2_valid
+addSignal -h 15 -holdScope io_stReq_2_sid[4:0]
+addSignal -h 15 -holdScope io_stReq_2_lid[4:0]
+addSignal -h 15 -holdScope io_stReq_2_iid[6:0]
+addSignal -h 15 -holdScope io_stReq_2_op[4:0]
+addSignal -h 15 -holdScope io_stReq_2_addr[63:0]
+addSignal -h 15 -holdScope io_stReq_2_data[63:0]
+addSignal -h 15 -holdScope io_stReq_3_valid
+addSignal -h 15 -holdScope io_stReq_3_sid[4:0]
+addSignal -h 15 -holdScope io_stReq_3_lid[4:0]
+addSignal -h 15 -holdScope io_stReq_3_iid[6:0]
+addSignal -h 15 -holdScope io_stReq_3_op[4:0]
+addSignal -h 15 -holdScope io_stReq_3_addr[63:0]
+addSignal -h 15 -holdScope io_stReq_3_data[63:0]
 endSubGroup "stu"
 addSubGroup "alu" -e FALSE
-addSignal -h 21 /tb/sim/core/u_aluPool/io_iexe_0_valid
-addSignal -h 21 -holdScope io_iexe_0_iid[6:0]
-addSignal -h 21 -holdScope io_iexe_0_pReg[6:0]
-addSignal -h 21 -holdScope io_iexe_1_valid
-addSignal -h 21 -holdScope io_iexe_1_iid[6:0]
-addSignal -h 21 -holdScope io_iexe_1_pReg[6:0]
-addSignal -h 21 -holdScope io_iexe_2_valid
-addSignal -h 21 -holdScope io_iexe_2_lid[4:0]
-addSignal -h 21 -holdScope io_iexe_2_pReg[6:0]
-addSignal -h 21 -holdScope io_iexe_3_valid
-addSignal -h 21 -holdScope io_iexe_3_iid[6:0]
-addSignal -h 21 -holdScope io_iexe_3_pReg[6:0]
+addSignal -h 15 /tb/sim/core/u_aluPool/io_iexe_0_valid
+addSignal -h 15 -holdScope io_iexe_0_iid[6:0]
+addSignal -h 15 -holdScope io_iexe_0_pReg[6:0]
+addSignal -h 15 -holdScope io_iexe_1_valid
+addSignal -h 15 -holdScope io_iexe_1_iid[6:0]
+addSignal -h 15 -holdScope io_iexe_1_pReg[6:0]
+addSignal -h 15 -holdScope io_iexe_2_valid
+addSignal -h 15 -holdScope io_iexe_2_lid[4:0]
+addSignal -h 15 -holdScope io_iexe_2_pReg[6:0]
+addSignal -h 15 -holdScope io_iexe_3_valid
+addSignal -h 15 -holdScope io_iexe_3_iid[6:0]
+addSignal -h 15 -holdScope io_iexe_3_pReg[6:0]
 endSubGroup "alu"
 addSubGroup "mdu" -e FALSE
-addSignal -h 21 /tb/sim/core/u_mduPool/io_iexe_0_valid
-addSignal -h 21 -holdScope io_iexe_0_iid[6:0]
-addSignal -h 21 -holdScope io_iexe_0_pReg[6:0]
-addSignal -h 21 -holdScope io_iexe_1_valid
-addSignal -h 21 -holdScope io_iexe_1_iid[6:0]
-addSignal -h 21 -holdScope io_iexe_1_pReg[6:0]
-addSignal -h 21 -holdScope io_iexe_2_valid
-addSignal -h 21 -holdScope io_iexe_2_iid[6:0]
-addSignal -h 21 -holdScope io_iexe_2_pReg[6:0]
-addSignal -h 21 -holdScope io_iexe_3_valid
-addSignal -h 21 -holdScope io_iexe_3_iid[6:0]
-addSignal -h 21 -holdScope io_iexe_3_pReg[6:0]
+addSignal -h 15 /tb/sim/core/u_mduPool/io_iexe_0_valid
+addSignal -h 15 -holdScope io_iexe_0_iid[6:0]
+addSignal -h 15 -holdScope io_iexe_0_pReg[6:0]
+addSignal -h 15 -holdScope io_iexe_1_valid
+addSignal -h 15 -holdScope io_iexe_1_iid[6:0]
+addSignal -h 15 -holdScope io_iexe_1_pReg[6:0]
+addSignal -h 15 -holdScope io_iexe_2_valid
+addSignal -h 15 -holdScope io_iexe_2_iid[6:0]
+addSignal -h 15 -holdScope io_iexe_2_pReg[6:0]
+addSignal -h 15 -holdScope io_iexe_3_valid
+addSignal -h 15 -holdScope io_iexe_3_iid[6:0]
+addSignal -h 15 -holdScope io_iexe_3_pReg[6:0]
 endSubGroup "mdu"
 addGroup "wb" -e FALSE
-addSignal -h 21 /tb/sim/core/u_alu_0/io_iwb_valid
-addSignal -h 21 -holdScope io_iwb_iid[6:0]
-addSignal -h 21 -holdScope io_iwb_pReg[6:0]
-addSignal -h 21 -UNSIGNED -HEX -holdScope io_iwb_dstData[63:0]
-addSignal -h 21 /tb/sim/core/u_alu_1/io_iwb_valid
-addSignal -h 21 -holdScope io_iwb_iid[6:0]
-addSignal -h 21 -holdScope io_iwb_pReg[6:0]
-addSignal -h 21 -holdScope io_iwb_dstData[63:0]
-addSignal -h 21 /tb/sim/core/u_alu_2/io_iwb_valid
-addSignal -h 21 -holdScope io_iwb_iid[6:0]
-addSignal -h 21 -holdScope io_iwb_pReg[6:0]
-addSignal -h 21 -holdScope io_iwb_dstData[63:0]
-addSignal -h 21 /tb/sim/core/u_alu_3/io_iwb_valid
-addSignal -h 21 -holdScope io_iwb_iid[6:0]
-addSignal -h 21 -holdScope io_iwb_pReg[6:0]
-addSignal -h 21 -UNSIGNED -HEX -holdScope io_iwb_dstData[63:0]
-addSignal -h 21 /BLANK
-addSignal -h 21 /tb/sim/core/u_mdu_0/io_iwb_valid
-addSignal -h 21 -holdScope io_iwb_iid[6:0]
-addSignal -h 21 -holdScope io_iwb_pReg[6:0]
-addSignal -h 21 -holdScope io_iwb_dstData[63:0]
-addSignal -h 21 /tb/sim/core/u_mdu_1/io_iwb_valid
-addSignal -h 21 -holdScope io_iwb_iid[6:0]
-addSignal -h 21 -holdScope io_iwb_pReg[6:0]
-addSignal -h 21 -holdScope io_iwb_dstData[63:0]
-addSignal -h 21 /tb/sim/core/u_mdu_2/io_iwb_valid
-addSignal -h 21 -holdScope io_iwb_iid[6:0]
-addSignal -h 21 -holdScope io_iwb_pReg[6:0]
-addSignal -h 21 -holdScope io_iwb_dstData[63:0]
-addSignal -h 21 /tb/sim/core/u_mdu_3/io_iwb_valid
-addSignal -h 21 -holdScope io_iwb_iid[6:0]
-addSignal -h 21 -holdScope io_iwb_pReg[6:0]
-addSignal -h 21 -holdScope io_iwb_dstData[63:0]
+addSignal -h 15 /tb/sim/core/u_alu_0/io_iwb_valid
+addSignal -h 15 -holdScope io_iwb_iid[6:0]
+addSignal -h 15 -holdScope io_iwb_pReg[6:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope io_iwb_dstData[63:0]
+addSignal -h 15 /tb/sim/core/u_alu_1/io_iwb_valid
+addSignal -h 15 -holdScope io_iwb_iid[6:0]
+addSignal -h 15 -holdScope io_iwb_pReg[6:0]
+addSignal -h 15 -holdScope io_iwb_dstData[63:0]
+addSignal -h 15 /tb/sim/core/u_alu_2/io_iwb_valid
+addSignal -h 15 -holdScope io_iwb_iid[6:0]
+addSignal -h 15 -holdScope io_iwb_pReg[6:0]
+addSignal -h 15 -holdScope io_iwb_dstData[63:0]
+addSignal -h 15 /tb/sim/core/u_alu_3/io_iwb_valid
+addSignal -h 15 -holdScope io_iwb_iid[6:0]
+addSignal -h 15 -holdScope io_iwb_pReg[6:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope io_iwb_dstData[63:0]
+addSignal -h 15 /BLANK
+addSignal -h 15 /tb/sim/core/u_mdu_0/io_iwb_valid
+addSignal -h 15 -holdScope io_iwb_iid[6:0]
+addSignal -h 15 -holdScope io_iwb_pReg[6:0]
+addSignal -h 15 -holdScope io_iwb_dstData[63:0]
+addSignal -h 15 /tb/sim/core/u_mdu_1/io_iwb_valid
+addSignal -h 15 -holdScope io_iwb_iid[6:0]
+addSignal -h 15 -holdScope io_iwb_pReg[6:0]
+addSignal -h 15 -holdScope io_iwb_dstData[63:0]
+addSignal -h 15 /tb/sim/core/u_mdu_2/io_iwb_valid
+addSignal -h 15 -holdScope io_iwb_iid[6:0]
+addSignal -h 15 -holdScope io_iwb_pReg[6:0]
+addSignal -h 15 -holdScope io_iwb_dstData[63:0]
+addSignal -h 15 /tb/sim/core/u_mdu_3/io_iwb_valid
+addSignal -h 15 -holdScope io_iwb_iid[6:0]
+addSignal -h 15 -holdScope io_iwb_pReg[6:0]
+addSignal -h 15 -holdScope io_iwb_dstData[63:0]
 addGroup "retire" -e FALSE
-addSignal -h 21 /tb/sim/core/u_scheduler/mIid/io_release_0_valid
-addSignal -h 21 -holdScope io_release_0_iid[6:0]
-addSignal -h 21 -holdScope io_release_0_flush
-addSignal -h 21 -holdScope io_release_1_valid
-addSignal -h 21 -holdScope io_release_1_iid[6:0]
-addSignal -h 21 -holdScope io_release_1_flush
-addSignal -h 21 -holdScope io_release_2_valid
-addSignal -h 21 -holdScope io_release_2_iid[6:0]
-addSignal -h 21 -holdScope io_release_2_flush
-addSignal -h 21 -holdScope io_release_3_valid
-addSignal -h 21 -holdScope io_release_3_iid[6:0]
-addSignal -h 21 -holdScope io_release_3_flush
-addSignal -h 21 -holdScope io_release_4_valid
-addSignal -h 21 -holdScope io_release_4_iid[6:0]
-addSignal -h 21 -holdScope io_release_4_flush
-addSignal -h 21 -holdScope io_release_5_valid
-addSignal -h 21 -holdScope io_release_5_iid[6:0]
-addSignal -h 21 -holdScope io_release_5_flush
-addSignal -h 21 -holdScope io_release_6_valid
-addSignal -h 21 -holdScope io_release_6_iid[6:0]
-addSignal -h 21 -holdScope io_release_6_flush
-addSignal -h 21 -holdScope io_release_7_valid
-addSignal -h 21 -holdScope io_release_7_iid[6:0]
-addSignal -h 21 -holdScope io_release_7_flush
-addGroup "G12"
+addSignal -h 15 /tb/sim/core/u_scheduler/mIid/io_release_0_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_release_0_iid[6:0]
+addSignal -h 15 -holdScope io_release_0_flush
+addSignal -h 15 -holdScope io_release_1_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_release_1_iid[6:0]
+addSignal -h 15 -holdScope io_release_1_flush
+addSignal -h 15 -holdScope io_release_2_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_release_2_iid[6:0]
+addSignal -h 15 -holdScope io_release_2_flush
+addSignal -h 15 -holdScope io_release_3_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_release_3_iid[6:0]
+addSignal -h 15 -holdScope io_release_3_flush
+addSignal -h 15 -holdScope io_release_4_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_release_4_iid[6:0]
+addSignal -h 15 -holdScope io_release_4_flush
+addSignal -h 15 -holdScope io_release_5_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_release_5_iid[6:0]
+addSignal -h 15 -holdScope io_release_5_flush
+addSignal -h 15 -holdScope io_release_6_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_release_6_iid[6:0]
+addSignal -h 15 -holdScope io_release_6_flush
+addSignal -h 15 -holdScope io_release_7_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope io_release_7_iid[6:0]
+addSignal -h 15 -holdScope io_release_7_flush
+addGroup "G14"
 
 ; getSignalForm Scope Hierarchy Status
 ; active file of getSignalForm
