@@ -1,7 +1,7 @@
-import "DPI-C" function void flash_read
+import "DPI-C" function longint flash_read_helper
 (
-  input int addr,
-  output longint data
+  input  bit ren,
+  input int addr
 );
 
 module FlashHelper (
@@ -11,9 +11,8 @@ module FlashHelper (
   output reg [63:0] data
 );
 
-  always @(posedge clk) begin
-    if (ren) flash_read(addr, data);
+  always @(negedge clk) begin
+    data = flash_read_helper(ren, addr);
   end
-
 endmodule
 

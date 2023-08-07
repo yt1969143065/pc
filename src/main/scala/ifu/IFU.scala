@@ -151,16 +151,16 @@ class IFU extends Module with CoreParameters{
   }
 
   //instruction read request
-  reqQ.io.enq.valid            := !pcStallByJr && !pcStallByExcp && !pcStallByMret && !pcStallByFencei && !pcStallByEcall
-  reqQ.io.enq.bits             := DontCare
+  reqQ.io.enq.valid := !pcStallByJr && !pcStallByExcp && !pcStallByMret && !pcStallByFencei && !pcStallByEcall
+  reqQ.io.enq.bits := DontCare
   reqQ.io.enq.bits.isFlashAddr := pcIsFlashAddr
-  reqQ.io.enq.bits.id          := idPtr
-  reqQ.io.enq.bits.addr        := pc
-  reqQ.io.flush.get            := pcChange.valid || pcChangeByBJ.valid || stallByJr || stallByMret || stallByFencei || stallByEcall
+  reqQ.io.enq.bits.id := idPtr
+  reqQ.io.enq.bits.addr := pc
+  reqQ.io.flush.get := pcChange.valid || pcChangeByBJ.valid || stallByJr || stallByMret || stallByFencei || stallByEcall
 
-  reqQ.io.deq.ready            := i_ar.ready && reqAddrQ.io.enq.ready && rspQ.io.enq.ready
+  reqQ.io.deq.ready := i_ar.ready && reqAddrQ.io.enq.ready
 
-  i_ar.valid      := reqQ.io.deq.valid && rspQ.io.enq.ready
+  i_ar.valid      := reqQ.io.deq.valid &&  reqAddrQ.io.enq.ready
   i_ar.bits.addr  := reqQ.io.deq.bits.addr
   i_ar.bits.id    := Cat("b0".U, reqQ.io.deq.bits.id)
   i_ar.bits.len   := "b0".U
@@ -171,7 +171,7 @@ class IFU extends Module with CoreParameters{
   i_ar.bits.prot  := 0.U
   i_ar.bits.qos   := 0.U
 
-  reqAddrQ.io.enq.valid := reqQ.io.deq.valid && i_ar.ready && rspQ.io.enq.ready
+  reqAddrQ.io.enq.valid := reqQ.io.deq.valid && i_ar.ready
   reqAddrQ.io.enq.bits  := reqQ.io.deq.bits
 
   //instruction read response

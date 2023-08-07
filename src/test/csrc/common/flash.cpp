@@ -11,6 +11,7 @@ unsigned long EMU_FLASH_SIZE = DEFAULT_EMU_FLASH_SIZE;
 char *get_flash_path() { return flash_path;  }
 long get_flash_size() { return flash_bin_size; }
 
+/*
 extern "C" void flash_read(uint32_t addr, uint64_t *data) {
   //addr must be 8 bytes aligned first
   uint32_t aligned_addr = addr & FLASH_ALIGH_MASK;
@@ -21,6 +22,21 @@ extern "C" void flash_read(uint32_t addr, uint64_t *data) {
   }else{
     *data = flash_base[rIdx];
   }
+}
+*/
+extern "C" uint64_t flash_read_helper(uint8_t en, uint32_t addr) {
+  if (!flash_base)
+    return 0;
+  uint32_t aligned_addr = addr & FLASH_ALIGH_MASK;
+  uint64_t rIdx = aligned_addr / sizeof(uint64_t);
+  if (en && rIdx >= EMU_FLASH_SIZE / sizeof(uint64_t)) {
+    printf("[warning] read addr %x is out of bound\n",addr);
+    return 0;
+  }
+  if(!en){return 0;}
+
+  uint64_t rdata = (en) ? flash_base[rIdx] : 0;
+  return rdata;
 }
 
 void init_flash(const char *flash_bin) {
@@ -69,4 +85,5 @@ void init_flash(const char *flash_bin) {
   int ret = fread(flash_base, flash_bin_size, 1, flash_fp);
   assert(ret = 1);
   fclose(flash_fp);
+
 }

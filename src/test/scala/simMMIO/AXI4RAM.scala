@@ -38,24 +38,25 @@ class AXI4RAM extends Module with CoreParameters {
     ram.io.wIdx := (wIdx << 2.U) + i.U
     ram.io.wdata := io.axi.w.bits.data((i + 1) * 64 - 1, i * 64)
     ram.io.wmask := MaskExpand(io.axi.w.bits.strb((i + 1) * 8 - 1, i * 8))
-    rdata(i) := RegNext(ram.io.rdata)
+    rdata(i) := ram.io.rdata
   }
 
-  io.axi.ar.ready := true.B
+  val r_rspQ  = Module(new Queue(new AxiRBundle, 4))
+  io.axi.ar.ready := r_rspQ.io.enq.ready
+  r_rspQ.io.enq.valid := io.axi.ar.valid
+  r_rspQ.io.enq.bits.id := io.axi.ar.bits.id 
+  r_rspQ.io.enq.bits.data := Cat(rdata.reverse)
+  r_rspQ.io.enq.bits.resp := 0.U
+  r_rspQ.io.enq.bits.last := true.B
+  io.axi.r <>  r_rspQ.io.deq
 
-  io.axi.r.valid := RegNext(io.axi.ar.valid)
-  io.axi.r.bits.id := RegNext(io.axi.ar.bits.id)
-  io.axi.r.bits.data := Cat(rdata.reverse)
-  io.axi.r.bits.resp := 0.U
-  io.axi.r.bits.last := true.B
-
-  io.axi.aw.ready := true.B
-
-  io.axi.w.ready := true.B
-  
-  io.axi.b.valid :=  io.axi.aw.valid 
-  io.axi.b.bits.id :=  io.axi.aw.bits.id
-  io.axi.b.bits.resp := 0.U
+  val b_rspQ  = Module(new Queue(new AxiBBundle, 4))
+  io.axi.aw.ready := b_rspQ.io.enq.ready && io.axi.w.valid
+  io.axi.w.ready := b_rspQ.io.enq.ready && io.axi.aw.valid
+  b_rspQ.io.enq.valid := io.axi.aw.valid && io.axi.w.valid
+  b_rspQ.io.enq.bits.id := io.axi.aw.bits.id
+  b_rspQ.io.enq.bits.resp := 0.U
+  io.axi.b <>  b_rspQ.io.deq
 }
 
 

@@ -16,16 +16,16 @@ module RAMHelper(
   input         clk,
   input         en,
   input  [63:0] rIdx,
-  output [63:0] rdata,
+  output reg [63:0] rdata,
   input  [63:0] wIdx,
   input  [63:0] wdata,
   input  [63:0] wmask,
   input         wen
 );
 
-  assign rdata = ram_read_helper(en, rIdx);
 
-  always @(posedge clk) begin
+  always @(negedge clk) begin
+    rdata = ram_read_helper(en, rIdx);
     ram_write_helper(wIdx, wdata, wmask, wen && en);
   end 
 
